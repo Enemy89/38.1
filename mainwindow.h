@@ -37,8 +37,6 @@ class ImageButton : public QPushButton
 
 public:
     ImageButton(QWidget *parent = nullptr);
-
-    // Публичный метод для изменения состояния кнопки
     void toggleState();
 
 protected:
@@ -49,8 +47,6 @@ private:
     QPixmap mButtonDownPixmap;
     QPixmap mCurrentButtonPixmap;
     bool mIsDown;
-
-    // Приватный метод для изменения изображения кнопки
     void setDown();
 };
 

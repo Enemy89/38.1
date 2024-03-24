@@ -18,23 +18,17 @@ MainWindow::MainWindow(QWidget *parent)
     mImageButton = new ImageButton(this);
     connect(mImageButton, &QPushButton::clicked, this, &MainWindow::onImageButtonClicked);
 
-    // Инициализация QMediaPlayer и QAudioOutput
     mPlayer = new QMediaPlayer(this);
     mAudioOutput = new QAudioOutput(this);
     mPlayer->setAudioOutput(mAudioOutput);
 
-    // Получаем текущий рабочий каталог приложения
     QString currentPath = QCoreApplication::applicationDirPath();
-
-    // Строим путь к файлу звука относительно текущего каталога
     QString relativePath = currentPath + "/../sound/snap.mp3";
 
-    // Проверяем существование файла
     QFile file(relativePath);
     if (!file.exists()) {
         qDebug() << "Файл звука не найден!";
     } else {
-        // Устанавливаем источник мультимедиа для QMediaPlayer
         mPlayer->setSource(QUrl::fromLocalFile(relativePath));
         qDebug() << "Файл звука найден и установлен!";
     }
@@ -55,10 +49,7 @@ void ImageButton::toggleState()
 
 void MainWindow::onImageButtonClicked()
 {
-    // Воспроизводим звук при нажатии кнопки
     mPlayer->play();
-
-    // Изменяем изображение кнопки
     mImageButton->toggleState();
 }
 
